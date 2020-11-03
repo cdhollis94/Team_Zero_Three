@@ -1,32 +1,41 @@
 from flask import Flask
 from flask import render_template
 from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
+
+# from routes.test_blueprint import test_blueprint
+from routes.ingredient_bp import ingredient_bp
+
 app = Flask(__name__)   # Pass the main module (this file) as the main module for the application
-bootstrap = Bootstrap(app)
 
-# [FLASK TEST CODE] ----------------------------------------------------------------------------------
-# To be deleted before release
+# [DATABASE INITIATION] ----------------------------------------------------------------------------------------
+db_username = 'cs361_woym'    # Enter username for database
+db_password = '5012'    # Enter password for database
+db_name = 'cs361_woym'   # DB name (always class number & username)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://'+db_username+':'+db_password+'@classmysql.engr.oregonstate.edu/'+db_name
+db = SQLAlchemy(app)
+class Ingredient(db.Model):
+    __tablename__ = 'ingredients'
+    ing_id = db.Column(db.Integer, primary_key=True)
+    ing_name = db.Column(db.String(12), unique=True)
 
-@app.route('/hello-world')
-def test_page():
-    """
-    Test route for correct flask installation; to use:
-        1 - Activate virtual environment:               venv\Scripts\activate
-        2 - Assign flask app:                           set FLASK_APP=app.py
-        3 - Run flask:                                  flask run
-        4 - Use browser to nav to:                      http://localhost:5000/hello-world
-    """
-    return '<h1>Hello World</h1>'
+    def __repr__(self):
+        return '<Ingredient %r>' % self.name
 
-@app.route('/hello/<name>')
-def test_page_dynamic(name):
-    """
-    Example of dynamic URL function, will format <name> 
-    """
-    return '<h1>Hello, {}!</h1>'.format(name)
+db.create_all()
+db.session.commit()
+# --------------------------------------------------------------------------------------------------------------
 
-@app.route('/template/<name>')
-def test_template(name):
-    return render_template('test_name.html', name=name)
+bootstrap = Bootstrap(app)  # Initiate bootstrap to use on the templates
 
-# ---------------------------------------------------------------------------------------------------
+# [REGISTER BLUEPRINTS] ----------------------------------------------------------------------------------------
+#  - Templates used to handle individual routes used for different prats of the program
+# app.register_blueprint(test_blueprint)
+app.register_blueprint(ingredient_bp)
+# --------------------------------------------------------------------------------------------------------------
+
+# [RUN APP] ----------------------------------------------------------------------------------------------------
+port_number = 5136  # Run the app from terminal 'python3 app.py', change port number iof already in use
+if __name__ == "__main__":
+    app.run(port=port_number)
+# --------------------------------------------------------------------------------------------------------------
