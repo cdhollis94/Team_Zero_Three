@@ -1,4 +1,4 @@
-from .. import db
+from ..app import db
 
 class Ingredient(db.Model):
     __tablename__ = 'ingredients'
