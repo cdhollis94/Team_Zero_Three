@@ -1,0 +1,37 @@
+{% extends "bootstrap/base.html" %}       
+{% block title %}Ingredient Detail - {{ingredient.ing_name}}{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block body %}
+<h1>{{ingredient.ing_name}}</h1>
+<h2>Food Group: {{ingredient.food_group.fg_name}}</h2>
+<br>
+<h2>Positive Attributes</h2>
+<p> - A list of ethically positive facts about this ingredient</p>
+<ul>
+    {% for attr in ingredient.attributes %}
+        {% if attr.att_pos_neg %}
+            <li>{{ attr.att_desc }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+<br>
+<h2>Negative Attributes</h2>
+<p> - A list of not-so-ethical facts about this ingredient</p>
+<ul>
+    {% for attr in ingredient.attributes %}
+        {% if not attr.att_pos_neg %}
+            <li>{{ attr.att_desc }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+<br>
+<h2>Possible Alternatives</h2>
+<p> - A list of ingredients that could be used as a substitute:</p>
+<ul>
+    {% for ings in ingredient.food_group.ingredients %}
+        <li>{{ ings. }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

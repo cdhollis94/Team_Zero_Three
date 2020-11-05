@@ -13,7 +13,7 @@ class Attribute(db.Model):
     """
     __tablename__ = 'attributes'
     att_id = db.Column(db.Integer, primary_key=True)                     # Unique ID, autoincrement, primary key
-    att_desc = db.Column(db.String(12), unique=True, nullable=False)     # Description of the attribute
+    att_desc = db.Column(db.String(100), unique=True, nullable=False)     # Description of the attribute
     att_pos_neg = db.Column(db.Boolean, nullable=False)                  # Bool to determine if the attribute is positive or negative
 
     ingredients = db.relationship('Ingredient', secondary=ing_att_assc)
