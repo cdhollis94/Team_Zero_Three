@@ -1,0 +1,9 @@
+{% extends "bootstrap/base.html" %}       
+{% block title %}Success{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block body %}
+<h1>Welcome {{username}}</h1>
+<a href="{{ url_for('logout_bp.logout') }}">Log Out</a>
+{% endblock %}
