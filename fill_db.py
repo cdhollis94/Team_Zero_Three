@@ -3,6 +3,7 @@
 from main_app.models.food_group import Food_Group
 from main_app.models.ingredient import Ingredient
 from main_app.models.attribute import Attribute
+from main_app.models.account import Account
 from main_app import db
 
 # [INIT FGs] -----------------------------------------------------------------------------------------------------
