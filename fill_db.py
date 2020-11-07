@@ -29,6 +29,8 @@ ing_melon = Ingredient(ing_name='Melon', fg=fg_fruit)
 ing_li.append(ing_melon)
 ing_beef = Ingredient(ing_name='Beef', fg=fg_protein)
 ing_li.append(ing_beef)
+ing_chicken = Ingredient(ing_name='Chicken', fg=fg_protein)
+ing_li.append(ing_chicken)
 ing_milk = Ingredient(ing_name='Milk', fg=fg_dairy)
 ing_li.append(ing_milk)
 
