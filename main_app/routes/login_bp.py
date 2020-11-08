@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Length
@@ -35,6 +35,8 @@ def login():
             if check_password_hash(account.password, form.password.data):
                 login_user(account, remember=form.remember.data)
                 return redirect(url_for('login_success_bp.load_page'))
+        #If username or password is invalid, flash and redirect
+        flash('Invalid username or password provided')
         return redirect(url_for('login_bp.login'))
 
     return render_template('login_view.html', form=form)

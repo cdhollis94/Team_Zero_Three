@@ -6,19 +6,29 @@
 {% endblock %}
 {% block body %}
 <div class="container">
+  
+  <!-- flash -->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <p>{{msg}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <!-- flash -->
 
-    <form class="form-signin" method="POST" action ="/login">
-      <h2 class="form-signin-heading">Login</h2>
-      {{ form.hidden_tag() }}
-      {{ wtf.form_field(form.username) }}
-      {{ wtf.form_field(form.password) }}
-      {{ wtf.form_field(form.remember) }}
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
-    </form>
+  <form class="form-signin" method="POST" action ="/login">
+    <h2 class="form-signin-heading">Login</h2>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.username) }}
+    {{ wtf.form_field(form.password) }}
+    {{ wtf.form_field(form.remember) }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+  </form>
 
-    <form action="/signup">
-      <button class="btn btn-lg btn-secondary btn-block" type="submit">Create Account</button>
-    </form>
+  <form action="/signup">
+    <button class="btn btn-lg btn-secondary btn-block" type="submit">Create Account</button>
+  </form>
     
   
 </div> <!-- /container -->
