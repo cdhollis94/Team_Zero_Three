@@ -32,6 +32,8 @@ ing_beef = Ingredient(ing_name='Beef', fg=fg_protein)
 ing_li.append(ing_beef)
 ing_chicken = Ingredient(ing_name='Chicken', fg=fg_protein)
 ing_li.append(ing_chicken)
+ing_pork = Ingredient(ing_name='Pork', fg=fg_protein)
+ing_li.append(ing_pork)
 ing_milk = Ingredient(ing_name='Milk', fg=fg_dairy)
 ing_li.append(ing_milk)
 
