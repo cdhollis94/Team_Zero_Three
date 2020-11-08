@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, Length
@@ -25,6 +25,7 @@ def signup():
         # Query database, if account already exists with that username. Redirect back to sign up.
         account = Account.query.filter_by(username=form.username.data).first()
         if account:
+            flash('That username is taken')
             return redirect(url_for('signup_bp.signup'))
 
         # The username isn't taken. Hash the password, create an Account object, put it in db.
