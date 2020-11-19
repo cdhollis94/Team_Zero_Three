@@ -13,9 +13,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 from main_app.models.ingredient import Ingredient
 from main_app.models.attribute import Attribute
-from main_app.models.associations import ing_att_assc
+from main_app.models.associations import ing_att_assc, ing_rec_assc
 from main_app.models.food_group import Food_Group
 from main_app.models.account import Account
+from main_app.models.recipe import Recipe
 # --------------------------------------------------------------------------------------------------------------
 
 
@@ -39,6 +40,7 @@ from main_app.routes.signup_bp import signup_bp
 from main_app.routes.login_bp import login_bp
 from main_app.routes.login_success_bp import login_success_bp
 from main_app.routes.logout_bp import logout_bp
+from main_app.routes.create_recipe_bp import create_recipe_bp
 from flask import render_template
 app.register_blueprint(test_blueprint)
 app.register_blueprint(ingredient_bp)
@@ -46,4 +48,5 @@ app.register_blueprint(signup_bp)
 app.register_blueprint(login_bp)
 app.register_blueprint(login_success_bp)
 app.register_blueprint(logout_bp)
+app.register_blueprint(create_recipe_bp)
 # --------------------------------------------------------------------------------------------------------------
