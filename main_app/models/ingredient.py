@@ -1,7 +1,7 @@
 # pylint: disable=maybe-no-member
 
 from main_app import db
-from .associations import ing_att_assc
+from .associations import ing_att_assc, ing_rec_assc
 from .food_group import Food_Group
 
 class Ingredient(db.Model):
@@ -12,6 +12,7 @@ class Ingredient(db.Model):
     food_group = db.relationship("Food_Group")
 
     attributes = db.relationship('Attribute', secondary=ing_att_assc)
+    recipes = db.relationship('Recipe', secondary=ing_rec_assc)
 
     def __repr__(self):
         return '<Ingredient %r>' % self.ing_name
