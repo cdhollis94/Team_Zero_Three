@@ -1,0 +1,20 @@
+{% extends "bootstrap/base.html" %}       
+{% block title %}Template_Test{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block body %}
+<h1>Search</h1>
+{% from "_formhelpers.html" import render_field %}
+<form method=post>
+  <dl>
+    {{ render_field(form.select) }}
+    {{ render_field(form.search) }}
+  </dl>
+  <p><input type=submit value=Search>
+</form>
+{% if table %}
+<h1>Search Results:</h1>
+{{ table }}
+{% endif %}
+{% endblock %}

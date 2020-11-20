@@ -17,4 +17,4 @@ class Food_Group(db.Model):
     ingredients = db.relationship('Ingredient', backref='fg')           # Notate DB relationship b/w ingredients and food group
 
     def __repr__(self):
-        return '<Food_group %r>' % self.fg_name                         # What is printed when the class is queried (required)
+        return self.fg_name                         # What is printed when the class is queried (required)

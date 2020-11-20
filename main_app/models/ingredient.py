@@ -14,6 +14,28 @@ class Ingredient(db.Model):
     attributes = db.relationship('Attribute', secondary=ing_att_assc)
     recipes = db.relationship('Recipe', secondary=ing_rec_assc)
 
+    #count_pos_attributes = num_pos_attributes()
+    #count_neg_attributes = num_neg_attributes()
+
     def __repr__(self):
         return '<Ingredient %r>' % self.ing_name
 
+    def num_pos_attributes(self):
+        """
+        Returns the number of postitive attributes belonging to the ingredient
+        """
+        count = 0
+        for attr in self.attributes:
+            if attr.att_pos_neg:
+                count+=1
+        return count
+
+    def num_neg_attributes(self):
+        """
+        Returns the number of negative attributes belonging to the ingredient
+        """
+        count = 0
+        for attr in self.attributes:
+            if not attr.att_pos_neg:
+                count+=1
+        return count
