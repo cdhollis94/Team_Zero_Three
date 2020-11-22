@@ -1,40 +1,180 @@
-const base_url = "http://127.0.0.1:5137/"
+const base_url = "http://127.0.0.1:5137"
 
-const added_ingredients = {};
+let added_ingredients = {};
+
+function getRowElementsForEachFoodGroup(fg_id, classQuery) {
+    if (parseInt(ingredient_count[fg_id]) > 0) {
+        return document.querySelector(classQuery).firstElementChild.nextElementSibling.children;
+    }
+}
+
+function addButtonToEachIngInFoodGroup(fg_id, childrenOfBody) {
+    for (let i = 0; i < parseInt(ingredient_count[fg_id]); i++) {
+        let td = document.createElement('td');
+        let add_btn = document.createElement('input');
+        add_btn.type = 'button';
+        add_btn.value = 'Add';
+        td.appendChild(add_btn);
+        childrenOfBody[i].appendChild(td);
+    }
+}
+
+function getRowElementsForEachFoodGroup_Right(fg_id, tableElement) {
+    if (parseInt(ingredient_count[fg_id]) > 0) {
+        return tableElement.firstElementChild.nextElementSibling.children;
+    }
+}
+
+function editEachButton(fg_id, childrenOfBody) {
+    for (let i = 0; i < parseInt(ingredient_count[fg_id]); i++) {
+        childrenOfBody[i].lastElementChild.firstElementChild.value = 'Select';
+    }
+}
+
+// Add buttons for each ingredient when the page loads, left and right tables
+document.addEventListener('DOMContentLoaded', (event) => {
+    let fruit_table_body_rows;
+    let grain_table_body_rows;
+    let vegetable_table_body_rows;
+    let protein_table_body_rows;
+    let dairy_table_body_rows;
+
+    fruit_table_body_rows = getRowElementsForEachFoodGroup(0, '.fruit_table');
+    addButtonToEachIngInFoodGroup(0, fruit_table_body_rows);
+    grain_table_body_rows = getRowElementsForEachFoodGroup(1, '.grain_table');
+    addButtonToEachIngInFoodGroup(1, grain_table_body_rows);
+    vegetable_table_body_rows = getRowElementsForEachFoodGroup(2, '.vegetable_table');
+    addButtonToEachIngInFoodGroup(2, vegetable_table_body_rows);
+    protein_table_body_rows = getRowElementsForEachFoodGroup(3, '.protein_table');
+    addButtonToEachIngInFoodGroup(3, protein_table_body_rows);
+    dairy_table_body_rows = getRowElementsForEachFoodGroup(4, '.dairy_table');
+    addButtonToEachIngInFoodGroup(4, dairy_table_body_rows);
+});
 
 // Adding stuff to the recipe
 document.querySelector('.accordion').addEventListener('click', (event) => {
-    if (event.target.tagName.toLowerCase() === 'span') {
-        let ingredient_id = event.target.parentElement.querySelector('.ingredient_id_span').innerHTML;
-        let ingredient_name = event.target.innerHTML;
+    if (event.target.tagName.toLowerCase() === 'input') {
+        let ingredient_row = event.target.parentElement.parentElement;
+        let ingredient_name = ingredient_row.firstElementChild.innerText;
         
-        // If the ingredient isn't already added to the recipe, add it
-        // to the added_ingredients object to keep track of the ingredient
-        // and render it to the recipe_div
+        // // If the ingredient isn't already added to the recipe
         if (!added_ingredients[ingredient_name]) {
-            added_ingredients[ingredient_name] = ingredient_id;
-            let recipe_div = document.querySelector('.recipe_div');
-            // Create an li and put the ingredient in the recipe_div
-            ingredient_li = document.createElement('li');
-            ingredient_li.innerHTML = ingredient_name;
-            recipe_div.appendChild(ingredient_li);
-            console.log(added_ingredients);
+            // If this is the first ingredient, display the table head
+            if (isEmpty(added_ingredients)) {
+                let recipe_head_row = document.querySelector('#recipe_head_row');
+                recipe_head_row.style.display = 'table-row';
+            }
+
+            // add it to the local data structure
+            added_ingredients[ingredient_name] = ingredient_name;
+
+            // Get the table body
+            let recipe_table_body = document.querySelector('#recipe_table_body');
+
+            // Get the row, clone it, change button to del, add, alts, append to body
+            let row_clone = ingredient_row.cloneNode(true);
+            row_clone.lastElementChild.firstElementChild.value = 'Del';
+            let td = document.createElement('td');
+            let alt_btn = document.createElement('input');
+            alt_btn.type = 'button';
+            alt_btn.value = 'Alt';
+            td.appendChild(alt_btn);
+            row_clone.appendChild(td);
+            recipe_table_body.appendChild(row_clone);
         }
     }
 });
 
-// Removing stuff from the recipe
-document.querySelector('.recipe_div').addEventListener('click', (event) => {
-    if (event.target.tagName.toLowerCase() === 'li') {
-        let ingredient_name = event.target.innerHTML;
+let row_to_be_changed = null;
 
+// Removing stuff from the recipe or get alternatives
+document.querySelector('#recipe_table_body').addEventListener('click', (event) => {
+    if (event.target.value === 'Del') {
+        clearRight();
+        let row = event.target.parentElement.parentElement;
+        let ingredient_name = row.firstElementChild.innerText;
         // Delete the ingredient from the object
         // Remove the li from the page
         delete added_ingredients[ingredient_name];
-        event.target.remove();
+        row.remove();
+        // Hide the row header if empty
+        if (isEmpty(added_ingredients)) {
+            let recipe_head_row = document.querySelector('#recipe_head_row');
+            recipe_head_row.style.display = 'none';
+        }
+        console.log(added_ingredients);
+    }
+    else if (event.target.value === 'Alt') {
+        // hide all tables that are currently shown
+        clearRight();
+        row_to_be_changed = event.target.parentElement.parentElement;
+        let fg = row_to_be_changed.firstElementChild.nextElementSibling.innerText;
+        // Get right side div
+        let right_div = document.querySelector('#right_div');
+        // display the one table
+        if (fg === 'Fruit') {
+            // clone the Fruit table
+            let table_clone = document.querySelector('.fruit_table').cloneNode(true);
+            // Get the table's, body's, rows
+            let table_body_children = getRowElementsForEachFoodGroup_Right(0, table_clone);
+            editEachButton(0, table_body_children);
+            // Append it to right side div
+            right_div.appendChild(table_clone);
+        } else if (fg === 'Grain') {
+            let table_clone = document.querySelector('.grain_table').cloneNode(true);
+            let table_body_children = getRowElementsForEachFoodGroup_Right(1, table_clone);
+            editEachButton(1, table_body_children);
+            right_div.appendChild(table_clone);
+        } else if (fg === 'Vegetable') {
+            let table_clone = document.querySelector('.vegetable_table').cloneNode(true);
+            let table_body_children = getRowElementsForEachFoodGroup_Right(2, table_clone);
+            editEachButton(2, table_body_children);
+            right_div.appendChild(table_clone);
+        } else if (fg === 'Protein') {
+            let table_clone = document.querySelector('.protein_table').cloneNode(true);
+            let table_body_children = getRowElementsForEachFoodGroup_Right(3, table_clone);
+            editEachButton(3, table_body_children);
+            right_div.appendChild(table_clone);
+        } else if (fg === 'Dairy') {
+            let table_clone = document.querySelector('.dairy_table').cloneNode(true);
+            let table_body_children = getRowElementsForEachFoodGroup_Right(4, table_clone);
+            editEachButton(4, table_body_children);
+            right_div.appendChild(table_clone);
+        }
+    }
+});
+
+document.querySelector('#right_div').addEventListener('click', (event) => {
+    if (event.target.value === 'Select') {
+        console.log(row_to_be_changed);
+
+        // Get the row
+        let selected_ingredient_children = event.target.parentElement.parentElement.children;
+        
+        // Get the children of the row_to_be_changed
+        let children = row_to_be_changed.children
+
+        // Update the added_ingredients
+        delete added_ingredients[children[0].innerHTML];
+        added_ingredients[selected_ingredient_children[0].innerText] = selected_ingredient_children[0].innerText;
+        
+        // Set the text in the row to be changed to the alternative ingredients text
+        children[0].innerHTML = selected_ingredient_children[0].innerHTML;
+        children[1].innerHTML = selected_ingredient_children[1].innerHTML;
+        children[2].innerHTML = selected_ingredient_children[2].innerHTML;
+        children[3].innerHTML = selected_ingredient_children[3].innerHTML;
+        
+        clearRight();
+
         console.log(added_ingredients);
     }
 });
+    
+function clearRight() {
+    row_to_be_changed = null;
+    let right_div = document.querySelector('#right_div');
+    right_div.innerHTML = "";
+}
 
 // Pressing the save recipe button
 document.querySelector('#save_recipe_button').addEventListener('click', (event) => {
@@ -42,7 +182,7 @@ document.querySelector('#save_recipe_button').addEventListener('click', (event) 
     let recipe_name_text = document.querySelector('#recipe_name_textbox').value;
     // If the text is empty, alert the user
     if (recipe_name_text == '') {
-        console.log('Put something fool');
+        alert('Enter a recipe name');
     }
     else {
         // If the recipe has ingredients, save it
@@ -53,7 +193,7 @@ document.querySelector('#save_recipe_button').addEventListener('click', (event) 
             // Save the recipe to the database
             // Pass to the server through a POST request, the added_ingredients object
             var req = new XMLHttpRequest();
-            req.open('POST', base_url + 'create');
+            req.open('POST', base_url + '/create');
             req.setRequestHeader('Content-Type', 'application/json');
             req.addEventListener('load', () => {
                 var response = JSON.parse(req.responseText);
@@ -68,7 +208,7 @@ document.querySelector('#save_recipe_button').addEventListener('click', (event) 
         }
         else {
             // alert them that there's nothing there
-            console.log('You have nothing');
+            alert('Please add ingredients to your recipe');
         }
     }
 });
