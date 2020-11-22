@@ -1,11 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect
-from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField
-from main_app import db
-from .search_tables import Results_Ingredient
-from .search_tables import Results_Recipe
-from main_app.models.ingredient import Ingredient
-from main_app.models.recipe import Recipe
+from .__init__ import *
 
 search_bp = Blueprint('search_bp', __name__)
 
@@ -20,7 +13,28 @@ class SearchForm(FlaskForm):
     search = StringField('')
 # -------------------------------------------------------------------------------------------------------------
 
-# [REGISTER BLUEPRINTS] ----------------------------------------------------------------------------------------
+# [CREATE TABLES] ---------------------------------------------------------------------------------------------
+class Results_Ingredient(Table):
+    """
+    Table to show the search results from a search for ingredients
+    """
+    ing_name = Col("Ingredient Name")
+    food_group = Col("Food Group")
+    num_pos_attributes = Col("Number of Positive Attributes")
+    num_neg_attributes = Col("Number of Negative Attributes")
+    link = LinkCol('View Ingredient', 'ingredient_bp.view_ing_detail', url_kwargs=dict(ing_name='ing_name'))
+
+class Results_Recipe(Table):
+    """
+    Table to show the search results from a search for Food Groups
+    """
+    name = Col("Recipe Name")
+    cumulative_pos_attributes = Col("Total Number of Positive Attributes")
+    cumulative_neg_attributes = Col("Total Number of Negative Attributes")
+    # link = LinkCol('View Ingredient', 'ingredient_bp.view_ing_detail', url_kwargs=dict(ing_name='ing_name'))
+# -------------------------------------------------------------------------------------------------------------
+
+# [REGISTER BLUEPRINTS] ---------------------------------------------------------------------------------------
 @search_bp.route('/Search', methods=['GET','POST'])
 def search_page():
     """
@@ -53,6 +67,7 @@ def render_search_results(search_query):
         return render_template('search_view.html', form=search_query, table=table)
 # -------------------------------------------------------------------------------------------------------------
 
+# [HELPER FUNCTIONS] ------------------------------------------------------------------------------------------
 def get_search_result(search_target, search_string):
     """
     Returns the search results from the database
@@ -69,3 +84,4 @@ def get_search_result(search_target, search_string):
         elif search_target == 'Recipe':
             results=Recipe.query.filter(Recipe.name.like('%'+search_string+'%')).all()
     return results
+# -------------------------------------------------------------------------------------------------------------

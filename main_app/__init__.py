@@ -37,31 +37,19 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_message = ''
-login_manager.login_view = 'login_bp.login'
+login_manager.login_view = 'account_bp.login'
 # --------------------------------------------------------------------------------------------------------------
 
 
 # [REGISTER BLUEPRINTS] ----------------------------------------------------------------------------------------
 #  - Templates used to handle individual routes used for different parts of the program
-from main_app.routes.test_blueprint import test_blueprint
-
 from main_app.routes.ingredient_bp import ingredient_bp
-
 from main_app.routes.search_page_bp import search_bp
-
-from main_app.routes.signup_bp import signup_bp
-from main_app.routes.login_bp import login_bp
-from main_app.routes.login_success_bp import login_success_bp
-from main_app.routes.logout_bp import logout_bp
-
+from main_app.routes.account_bp import account_bp
 from main_app.routes.create_recipe_bp import create_recipe_bp
 
-app.register_blueprint(test_blueprint)
 app.register_blueprint(ingredient_bp)
-app.register_blueprint(signup_bp)
-app.register_blueprint(login_bp)
-app.register_blueprint(login_success_bp)
-app.register_blueprint(logout_bp)
+app.register_blueprint(account_bp)
 app.register_blueprint(create_recipe_bp)
 app.register_blueprint(search_bp)
 # --------------------------------------------------------------------------------------------------------------

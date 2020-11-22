@@ -1,8 +1,4 @@
-from flask import Blueprint, render_template, request, abort
-from flask_table import Table, Col
-from main_app.models.ingredient import Ingredient
-from main_app.models.recipe import Recipe
-from main_app import db
+from .__init__ import *
 
 create_recipe_bp = Blueprint('create_recipe_bp', __name__)
 
