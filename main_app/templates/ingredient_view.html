@@ -41,46 +41,47 @@
 <!-- ETHICAL ATTRIBUTES BEGIN HERE -->
 <div style="clear:both;float:left;background-color:white;border:2px solid darkgrey;border-radius:25px;margin-left:10%;margin-top:8px;
 padding:6px;width:35%;height:40%;box-shadow: 2px 2px 8px #888888;"">
-<h2 style="text-align:center">
-    <b>Positive Attributes</b>
-</h2>
-<p style="text-align:center"> - <u>A list of ethically positive facts about this ingredient</u></p>
-<ul style="text-align:left">
-    {% for attr in ingredient.attributes %}
-        {% if attr.att_pos_neg %}
-            <li>{{ attr.att_desc }}</li>
-        {% endif %}
-    {% endfor %}
-</ul>
+    <h2 style="text-align:center">
+        <b>Positive Attributes</b>
+    </h2>
+    <p style="text-align:center"> - <u>A list of ethically positive facts about this ingredient</u></p>
+    <ul style="text-align:left">
+        {% for attr in ingredient.attributes %}
+            {% if attr.att_pos_neg %}
+                <li>{{ attr.att_desc }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 </div>
 <br>
 <div style="float:left;background-color:white;border:2px solid darkgrey;border-radius:25px;margin-left:10%;margin-top:8px;
     padding:6px;width:35%;height:40%;box-shadow: 2px 2px 8px #888888">
-<h2 style="text-align:center">
-    <b>Negative Attributes</b>
-</h2>
-<p style="text-align:center"> - <u>A list of not-so-ethical facts about this ingredient</u></p>
-<ul style="text-align:left">
-    {% for attr in ingredient.attributes %}
-        {% if not attr.att_pos_neg %}
-            <li>{{ attr.att_desc }}</li>
-        {% endif %}
-    {% endfor %}
-</ul>
+    <h2 style="text-align:center">
+        <b>Negative Attributes</b>
+    </h2>
+    <p style="text-align:center"> - <u>A list of not-so-ethical facts about this ingredient</u></p>
+    <ul style="text-align:left">
+        {% for attr in ingredient.attributes %}
+            {% if not attr.att_pos_neg %}
+                <li>{{ attr.att_desc }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 </div>
 
 <div style="display:block;height:15px;content:'';clear:both"></div>
 
 
 <div style="clear:both;background-color:darkgrey;border-width:3px;border-color:grey;box-shadow: 2px 2px 8px #888888;
-    padding:3px"><center>
-<h2 style="color:white;margin-top:10px">Possible Alternatives</h2>
-<p style="color:white"> - A list of ingredients that could be used as a substitute:</p>
-<ul style="list-style-type:none;color:white">
-    {% for ings in ingredient.food_group.ingredients %}
-        <li>{{ ings.ing_name }}</li>
-    {% endfor %}
-</ul>
-</center>
+    padding:3px">
+    <center>
+    <h2 style="color:white;margin-top:10px">Possible Alternatives</h2>
+    <p style="color:white"> - A list of ingredients that could be used as a substitute:</p>
+    <ul style="list-style-type:none;color:white">
+        {% for ings in ingredient.food_group.ingredients %}
+            <li>{{ ings.ing_name }}</li>
+        {% endfor %}
+    </ul>
+    </center>
 </div>
 {% endblock %}
