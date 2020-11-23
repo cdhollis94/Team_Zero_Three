@@ -17,13 +17,11 @@ function addButtonToEachIngInFoodGroup(fg_id, classQuery) {
     }
 }
 
-function getRowElementsForEachFoodGroup_Right(fg_id, tableElement) {
+function editEachButton(fg_id, tableElement) {
+    let childrenOfBody;
     if (parseInt(ingredient_count[fg_id]) > 0) {
-        return tableElement.firstElementChild.nextElementSibling.children;
+        childrenOfBody = tableElement.firstElementChild.nextElementSibling.children;
     }
-}
-
-function editEachButton(fg_id, childrenOfBody) {
     for (let i = 0; i < parseInt(ingredient_count[fg_id]); i++) {
         childrenOfBody[i].lastElementChild.firstElementChild.value = 'Select';
     }
@@ -97,34 +95,31 @@ document.querySelector('#recipe_table_body').addEventListener('click', (event) =
         let fg = row_to_be_changed.firstElementChild.nextElementSibling.innerText;
         // Get right side div
         let right_div = document.querySelector('#right_div');
+        // Makes it easier to add a food group
+        let fg_table_ids = ['.fruit_table', '.grain_table', '.vegetable_table', '.protein_table', '.dairy_table'];
+        let fg_names = ['Fruit', 'Grain', 'Vegetable', 'Protein', 'Dairy'];
         // display the one table
-        if (fg === 'Fruit') {
+        if (fg === fg_names[0]) {
             // clone the Fruit table
-            let table_clone = document.querySelector('.fruit_table').cloneNode(true);
-            // Get the table's, body's, rows
-            let table_body_children = getRowElementsForEachFoodGroup_Right(0, table_clone);
-            editEachButton(0, table_body_children);
+            let table_clone = document.querySelector(fg_table_ids[0]).cloneNode(true);
+            editEachButton(0, table_clone);
             // Append it to right side div
             right_div.appendChild(table_clone);
-        } else if (fg === 'Grain') {
-            let table_clone = document.querySelector('.grain_table').cloneNode(true);
-            let table_body_children = getRowElementsForEachFoodGroup_Right(1, table_clone);
-            editEachButton(1, table_body_children);
+        } else if (fg === fg_names[1]) {
+            let table_clone = document.querySelector(fg_table_ids[1]).cloneNode(true);
+            editEachButton(1, table_clone);
             right_div.appendChild(table_clone);
-        } else if (fg === 'Vegetable') {
-            let table_clone = document.querySelector('.vegetable_table').cloneNode(true);
-            let table_body_children = getRowElementsForEachFoodGroup_Right(2, table_clone);
-            editEachButton(2, table_body_children);
+        } else if (fg === fg_names[2]) {
+            let table_clone = document.querySelector(fg_table_ids[2]).cloneNode(true);
+            editEachButton(2, table_clone);
             right_div.appendChild(table_clone);
-        } else if (fg === 'Protein') {
-            let table_clone = document.querySelector('.protein_table').cloneNode(true);
-            let table_body_children = getRowElementsForEachFoodGroup_Right(3, table_clone);
-            editEachButton(3, table_body_children);
+        } else if (fg === fg_names[3]) {
+            let table_clone = document.querySelector(fg_table_ids[3]).cloneNode(true);
+            editEachButton(3, table_clone);
             right_div.appendChild(table_clone);
-        } else if (fg === 'Dairy') {
-            let table_clone = document.querySelector('.dairy_table').cloneNode(true);
-            let table_body_children = getRowElementsForEachFoodGroup_Right(4, table_clone);
-            editEachButton(4, table_body_children);
+        } else if (fg === fg_names[4]) {
+            let table_clone = document.querySelector(fg_table_ids[4]).cloneNode(true);
+            editEachButton(4, table_clone);
             right_div.appendChild(table_clone);
         }
     }
