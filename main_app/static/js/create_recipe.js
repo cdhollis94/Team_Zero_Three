@@ -65,6 +65,9 @@ document.querySelector('.accordion').addEventListener('click', (event) => {
             td.appendChild(alt_btn);
             row_clone.appendChild(td);
             recipe_table_body.appendChild(row_clone);
+
+            // ingredient added
+            alert('Ingredient added to recipe');
         }
     }
 });
