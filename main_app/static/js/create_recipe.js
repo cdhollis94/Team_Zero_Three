@@ -2,13 +2,11 @@ const base_url = "http://127.0.0.1:5137"
 
 let added_ingredients = {};
 
-function getRowElementsForEachFoodGroup(fg_id, classQuery) {
+function addButtonToEachIngInFoodGroup(fg_id, classQuery) {
+    let childrenOfBody;
     if (parseInt(ingredient_count[fg_id]) > 0) {
-        return document.querySelector(classQuery).firstElementChild.nextElementSibling.children;
+        childrenOfBody = document.querySelector(classQuery).firstElementChild.nextElementSibling.children;
     }
-}
-
-function addButtonToEachIngInFoodGroup(fg_id, childrenOfBody) {
     for (let i = 0; i < parseInt(ingredient_count[fg_id]); i++) {
         let td = document.createElement('td');
         let add_btn = document.createElement('input');
@@ -33,22 +31,10 @@ function editEachButton(fg_id, childrenOfBody) {
 
 // Add buttons for each ingredient when the page loads, left and right tables
 document.addEventListener('DOMContentLoaded', (event) => {
-    let fruit_table_body_rows;
-    let grain_table_body_rows;
-    let vegetable_table_body_rows;
-    let protein_table_body_rows;
-    let dairy_table_body_rows;
-
-    fruit_table_body_rows = getRowElementsForEachFoodGroup(0, '.fruit_table');
-    addButtonToEachIngInFoodGroup(0, fruit_table_body_rows);
-    grain_table_body_rows = getRowElementsForEachFoodGroup(1, '.grain_table');
-    addButtonToEachIngInFoodGroup(1, grain_table_body_rows);
-    vegetable_table_body_rows = getRowElementsForEachFoodGroup(2, '.vegetable_table');
-    addButtonToEachIngInFoodGroup(2, vegetable_table_body_rows);
-    protein_table_body_rows = getRowElementsForEachFoodGroup(3, '.protein_table');
-    addButtonToEachIngInFoodGroup(3, protein_table_body_rows);
-    dairy_table_body_rows = getRowElementsForEachFoodGroup(4, '.dairy_table');
-    addButtonToEachIngInFoodGroup(4, dairy_table_body_rows);
+    let fg_table_ids = ['.fruit_table', '.grain_table', '.vegetable_table', '.protein_table', '.dairy_table'];
+    for (let x = 0; x < fg_table_ids.length; x++) {
+        addButtonToEachIngInFoodGroup(x, fg_table_ids[x]);
+    }
 });
 
 // Adding stuff to the recipe
