@@ -47,9 +47,11 @@ from main_app.routes.ingredient_bp import ingredient_bp
 from main_app.routes.search_page_bp import search_bp
 from main_app.routes.account_bp import account_bp
 from main_app.routes.create_recipe_bp import create_recipe_bp
+from main_app.routes.recipe_bp import recipe_bp
 
 app.register_blueprint(ingredient_bp)
 app.register_blueprint(account_bp)
 app.register_blueprint(create_recipe_bp)
 app.register_blueprint(search_bp)
+app.register_blueprint(recipe_bp)
 # --------------------------------------------------------------------------------------------------------------

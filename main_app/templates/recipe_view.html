@@ -1,0 +1,12 @@
+{% extends "bootstrap/base.html" %}       
+{% block title %}Recipe Detail - {{recipe.name}} {% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block body %}
+<h1>Recipe: {{recipe.name}}</h1>
+<h3>Cumulative negative attributes: {{recipe.cumulative_neg_attributes()}}</h3>
+<h3>Cumulative positive attributes: {{recipe.cumulative_pos_attributes()}}</h3>
+<h1>Ingredients:</h1>
+{{ table }}
+{% endblock %}

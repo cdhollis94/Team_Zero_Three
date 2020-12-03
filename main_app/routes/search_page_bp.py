@@ -31,7 +31,7 @@ class Results_Recipe(Table):
     name = Col("Recipe Name")
     cumulative_pos_attributes = Col("Total Number of Positive Attributes")
     cumulative_neg_attributes = Col("Total Number of Negative Attributes")
-    # link = LinkCol('View Ingredient', 'ingredient_bp.view_ing_detail', url_kwargs=dict(ing_name='ing_name'))
+    link = LinkCol('View Recipe', 'recipe_bp.view_recipe_detail', url_kwargs=dict(name='name'))
 # -------------------------------------------------------------------------------------------------------------
 
 # [REGISTER BLUEPRINTS] ---------------------------------------------------------------------------------------
