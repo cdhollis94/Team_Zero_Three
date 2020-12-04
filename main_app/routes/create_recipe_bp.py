@@ -7,6 +7,7 @@ class Ingredient_Food_Group(Table):
     """
     Table to show the ingredients for each food group
     """
+    rendered_image = Col("Ingredient")
     ing_name = Col("Ingredient Name")
     food_group = Col("Food Group")
     num_pos_attributes = Col("Number of Positive Attributes")
@@ -30,10 +31,15 @@ def load_recipe_builder():
 
     # put in table
     fruit_table = Ingredient_Food_Group(fruit, classes=['fruit_table'])
+    fruit_table.border=True
     grain_table = Ingredient_Food_Group(grain, classes=['grain_table'])
+    grain_table.border=True
     vegetable_table = Ingredient_Food_Group(vegetable, classes=['vegetable_table'])
+    vegetable_table.border=True
     protein_table = Ingredient_Food_Group(protein, classes=['protein_table'])
+    protein_table.border=True
     dairy_table = Ingredient_Food_Group(dairy, classes=['dairy_table'])
+    dairy_table.border=True
 
     # Server storage
     ingredient_storage.clear()
