@@ -1,4 +1,4 @@
-body, h1, h2, p, li, ul {
+body, h1, h2, h3, hr, p, li, ul {
   font-family: "Lato", sans-serif;
   margin-bottom: 0px;
   margin-top: 0px;
@@ -20,12 +20,16 @@ body {
 }
 hr {
   display: block;
+  margin-bottom: 10px;
 }
 h1 {
-  font-size: 21px;
+  font-size: 35px;
 }
 h2 {
-  font-size: 18px;  
+  font-size: 27px;  
+}
+h3{
+  font-size: 21px;
 }
 p {
   font-size: 15px;  
@@ -35,4 +39,48 @@ li {
 }
 ul {
   font-size: 15px;  
+}
+
+.shortSpace {
+  display: block;
+  height: 15px;
+  content: '';
+  clear: both;
+}
+
+.majorLine {
+  height: 5px;
+  width: 95%;
+  border-width: 0;
+  color: gray;
+  background-color: gray;
+  margin-top: 0px;
+  text-align: center;
+}
+
+.minorLine {
+  height: 4px;
+  width: 48%;
+  border-width: 0;
+  color: darkgray;
+  background-color: darkgray;
+}
+
+.attributeBubble {
+  background-color:white;
+  border:2px solid darkgrey;
+  border-radius:25px;
+  padding:6px;
+  width:35%;
+  height:40%;
+  box-shadow: 2px 2px 8px #888888;
+}
+
+.greyBlock {
+  background-color: darkgrey;
+  border-width: 3px;
+  border-color: grey;
+  box-shadow: 2px 2px 8px #888888;
+  padding: 3px;
+  color: white;
 }
