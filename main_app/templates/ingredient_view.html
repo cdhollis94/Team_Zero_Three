@@ -1,47 +1,47 @@
-{% extends "bootstrap/base.html" %}       
+{% extends "base.html" %}      
 {% block title %}Ingredient Detail - {{ingredient.ing_name}}{% endblock %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
     {{ super() }}
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
 {% endblock %}
 {% block body %}
 
 
 <!-- INGREDIENT NAME BEGINS HERE -->
-<h1 style="margin-left:5%;margin-bottom:0px">
+<h1 style="margin-left:5%">
     <b>{{ingredient.ing_name}}</b>
 </h1>
-<hr style="height:5px;width:95%;border-width:0;color:gray;background-color:gray;margin-top:0px">
+<center><hr class="majorLine"></center>
 
 
 <!-- INGREDIENT INFORMATION BEGINS HERE -->
 <div>
-    <p style="float: left; border: 3px solid gray;margin-left:15%">
-    <!-- <img src={{ url_for('static', filename = 'avocado.jpeg') }} width="320" height="320" alt="avocado" title="Avocado"> -->
+    <p style="float: left; border: 3px solid gray;margin-left:15%;margin-bottom:10px">
     <img src={{ ingredient.ing_pic }} width="320" height="320" alt=ingredient.ing_name title=ingredient.ing_name>
-    <h2 style="margin-left:50%;font-size:27px;margin-bottom:0px">
+    <h2 style="margin-left:40%">
         <b>Summary</b>
     </h2>
 </div>
-<hr style="height:4px;width:48%;border-width:0;color:darkgray;background-color:darkgray;margin-top:0px;margin-right:3%;text-align:right">
-<h2 style="margin-left:50%;font-size:21px">
-    Food Group: {{ingredient.food_group.fg_name}}
-</h2>
-<h2 style="margin-left:50%;font-size:21px">
-    Description: blablablablablablablablablablablabla... 
-</h2>
+<hr class="minorLine" style="float:right;margin-right:13%;margin-left:0px">
+<div class="infoArea">
+    <h3>
+        Food Group: {{ingredient.food_group.fg_name}}
+    </h3>
+    <h3>
+        Description: blablablablablablablablablablablabla... 
+    </h3>
+</div>
 <br>
 
 
 
-<hr style="height:4px;width:48%;border-width:0;color:darkgray;background-color:darkgray;margin-top:0px;margin-right:3%;text-align:right">
-<hr style="height:5px;width:95%;border-width:0;color:gray;background-color:gray;margin-top:0px;float:left;margin-left:2.5%">
+<hr class="minorLine" style="float:right;margin-right:13%;margin-left:0px">
+<center><hr class="majorLine"></center>
 
 
 
 <!-- ETHICAL ATTRIBUTES BEGIN HERE -->
-<div style="clear:both;float:left;background-color:white;border:2px solid darkgrey;border-radius:25px;margin-left:10%;margin-top:8px;
-padding:6px;width:35%;height:40%;box-shadow: 2px 2px 8px #888888;"">
+<div class="attributeBubble" style="clear:both;float:left;margin-left:10%;margin-top:8px">
     <h2 style="text-align:center">
         <b>Positive Attributes</b>
     </h2>
@@ -54,9 +54,7 @@ padding:6px;width:35%;height:40%;box-shadow: 2px 2px 8px #888888;"">
         {% endfor %}
     </ul>
 </div>
-<br>
-<div style="float:left;background-color:white;border:2px solid darkgrey;border-radius:25px;margin-left:10%;margin-top:8px;
-    padding:6px;width:35%;height:40%;box-shadow: 2px 2px 8px #888888">
+<div class="attributeBubble" style="float:right;margin-right:10%;margin-top:8px">
     <h2 style="text-align:center">
         <b>Negative Attributes</b>
     </h2>
@@ -70,19 +68,16 @@ padding:6px;width:35%;height:40%;box-shadow: 2px 2px 8px #888888;"">
     </ul>
 </div>
 
-<div style="display:block;height:15px;content:'';clear:both"></div>
+<div class="shortSpace"></div>
 
 
-<div style="clear:both;background-color:darkgrey;border-width:3px;border-color:grey;box-shadow: 2px 2px 8px #888888;
-    padding:3px">
-    <center>
-    <h2 style="color:white;margin-top:10px">Possible Alternatives</h2>
-    <p style="color:white"> - A list of ingredients that could be used as a substitute:</p>
-    <ul style="list-style-type:none;color:white">
+<div class="greyBlock">
+    <h3 style="margin-top:10px"><u>Possible Alternatives</u></h3>
+    <p>Here are some ingredients that could be used as a substitute:</p>
+    <ol style="margin-bottom:20px;margin-left:0px;list-style-position:inside;text-align:center">
         {% for ings in ingredient.food_group.ingredients %}
             <li>{{ ings.ing_name }}</li>
         {% endfor %}
-    </ul>
-    </center>
+    </ol>
 </div>
 {% endblock %}

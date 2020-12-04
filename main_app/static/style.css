@@ -1,4 +1,4 @@
-body, h1, h2, p, li, ul {
+body, h1, h2, h3, hr, p, li, ul, ol, form, table {
   font-family: "Lato", sans-serif;
   margin-bottom: 0px;
   margin-top: 0px;
@@ -20,12 +20,16 @@ body {
 }
 hr {
   display: block;
+  margin-bottom: 10px;
 }
 h1 {
-  font-size: 21px;
+  font-size: 35px;
 }
 h2 {
-  font-size: 18px;  
+  font-size: 27px;  
+}
+h3{
+  font-size: 21px;
 }
 p {
   font-size: 15px;  
@@ -35,4 +39,173 @@ li {
 }
 ul {
   font-size: 15px;  
+}
+form {
+  font-size: 25px;
+}
+table {
+  font-size: 18px;
+}
+
+.topbar {
+  background-color: white;
+  text-shadow: grey 0.1em 0.1em 0.2em;
+  border-bottom-left-radius:25px;
+  border-bottom-right-radius:25px;
+  box-shadow: 2px 2px 8px #888888;
+  margin-bottom: 10px;
+}
+
+.topbarElement {
+  margin-left: 10px;
+}
+
+.shortSpace {
+  display: block;
+  height: 15px;
+  content: '';
+  clear: both;
+}
+
+.majorLine {
+  height: 5px;
+  width: 95%;
+  border-width: 0;
+  color: gray;
+  background-color: gray;
+  margin-top: 0px;
+  text-align: center;
+}
+
+.minorLine {
+  height: 4px;
+  width: 48%;
+  border-width: 0;
+  color: darkgray;
+  background-color: darkgray;
+}
+
+.infoArea {
+  background-color: white;
+  margin-left: 42%;
+  margin-top: 25px;
+  padding-left: 20px;
+  width: 40%;
+  height: 31%;
+  border: 3px solid darkgray;
+  border-radius: 10px;
+}
+
+.attributeBubble {
+  background-color:white;
+  border:5px solid grey;
+  border-radius:25px;
+  padding:6px;
+  width:35%;
+  box-shadow: 2px 2px 8px #888888;
+  min-height: 25%;
+}
+
+.greyBlock {
+  background-color: darkgrey;
+  box-shadow: 2px 2px 8px #888888;
+  padding: 3px;
+  color: white;
+  text-shadow: grey 0.1em 0.1em 0.2em;
+  border-top-left-radius:80px;
+  border-top-right-radius:80px;
+  border:5px solid gray;
+  text-align: center;
+}
+
+.searchForm dt {
+  float: left;
+  margin-left: 35px;
+}
+
+.searchForm dd {
+  float: left;
+  margin-left: 7px;
+  margin-top: 13px;
+}
+
+.searchForm input[type=text], select {
+  width: 100%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+.searchForm input[type=submit] {
+  float: left;
+  margin-left: 7px;
+  margin-top: 13px;
+  border-radius: 25px;
+  background-color: darkgray;
+  color: white;
+  text-shadow: grey 0.1em 0.1em 0.2em;
+  font-family: "Lato", sans-serif;
+  width: 50px;
+}
+
+.searchTable h2 {
+  float: left;
+  margin-left: 25%;
+}
+
+.searchTable table {
+  clear: both;
+  background-color: darkgrey;
+  padding: 5px;
+  box-shadow: 2px 2px 8px #888888;
+  border-width: 3px;
+  border-color: grey;
+  color: white;
+  text-shadow: grey 0.1em 0.1em 0.2em;
+  text-align: center;
+  width: 75%
+}
+
+#creationAccordion {
+  margin-top: 25px;
+}
+
+.creationAccordion2 {
+  border: 3px solid darkgray;
+  box-shadow: 2px 2px 8px #888888;
+  color: darkgray;
+}
+
+.createTable table {
+  font-size: 14px;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+}
+
+.createTable input[type=button] {
+  border-radius: 25px;
+  background-color: darkgray;
+  color: white;
+  text-shadow: grey 0.1em 0.1em 0.2em;
+  font-family: "Lato", sans-serif;
+  width: 50px;
+}
+
+.modifySaveButton {
+  font-family: "Lato", sans-serif;
+  background-color: darkgray;
+  color: white;
+  border: 2px solid gray;
+  border-radius: 4px;
+}
+
+.addedIng {
+  font-size: 14px;
+  background-color: white;
+  border: 2px solid darkgray;
+  padding: 3px;border-radius:10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
