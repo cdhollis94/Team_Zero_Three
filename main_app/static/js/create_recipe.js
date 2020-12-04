@@ -1,4 +1,4 @@
-const base_url = "http://127.0.0.1:5137"
+const base_url = "http://127.0.0.1:5148"
 
 let added_ingredients = {};
 
@@ -162,6 +162,8 @@ function clearRight() {
 
 // Pressing the save recipe button
 document.querySelector('#save_recipe_button').addEventListener('click', (event) => {
+    // Clear the right column
+    clearRight();
     // Check if the recipe name is valid
     let recipe_name_text = document.querySelector('#recipe_name_textbox').value;
     // If the text is empty, alert the user
@@ -183,6 +185,9 @@ document.querySelector('#save_recipe_button').addEventListener('click', (event) 
                 var response = JSON.parse(req.responseText);
                 if (response['message']) {
                     alert('Please limit recipe name to 16 characters');
+                }
+                else if (response['recipenamenotunique']) {
+                    alert('Recipe name taken. Please try another.');
                 }
                 else {
                     alert('Recipe added to database');
