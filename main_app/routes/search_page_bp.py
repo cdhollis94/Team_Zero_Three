@@ -38,6 +38,7 @@ class Results_Recipe(Table):
 
 # [REGISTER BLUEPRINTS] ---------------------------------------------------------------------------------------
 @search_bp.route('/Search', methods=['GET','POST'])
+@login_required
 def search_page():
     """
     Route used to display search form
