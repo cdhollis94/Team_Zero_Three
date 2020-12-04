@@ -21,6 +21,7 @@ ingredient_storage = dict()
 
 # queries the database for ingredients, then loads recipe builder page
 @create_recipe_bp.route('/create', methods=['GET'])
+@login_required
 def load_recipe_builder():
     # arrays of ingredients for each group from database
     fruit = Ingredient.query.filter_by(ing_fg_id=1).all()
@@ -75,8 +76,14 @@ def save_recipe():
     if not content:
         abort(400)
 
-    # if the recipe name is too long, return with message
+    
     recipe_name = content['recipe_name']
+
+    # Query the database to see if that recipe name exists
+    temp_recipe = Recipe.query.filter_by(name=recipe_name).first()
+    if temp_recipe:
+        return {'recipenamenotunique': 'name'}
+
     if len(recipe_name) > 16:
         return {'message': 'invalid'}
     
