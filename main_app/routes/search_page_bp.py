@@ -1,4 +1,5 @@
 from .__init__ import *
+from flask import Markup
 
 search_bp = Blueprint('search_bp', __name__)
 
@@ -18,6 +19,7 @@ class Results_Ingredient(Table):
     """
     Table to show the search results from a search for ingredients
     """
+    rendered_image = Col("Ingredient")
     ing_name = Col("Ingredient Name")
     food_group = Col("Food Group")
     num_pos_attributes = Col("Number of Positive Attributes")
