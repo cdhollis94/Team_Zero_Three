@@ -1,12 +1,48 @@
-{% extends "bootstrap/base.html" %}       
+{% extends "base.html" %}       
 {% block title %}Recipe Detail - {{recipe.name}} {% endblock %}
 {% block head %}
     {{ super() }}
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
 {% endblock %}
 {% block body %}
+
+<!-- INGREDIENT NAME BEGINS HERE -->
+<h1 style="margin-left:5%">
+    <b>Recipe: {{recipe.name}}</b>
+</h1>
+<center><hr class="majorLine"></center>
+
+<!-- ETHICAL ATTRIBUTES BEGIN HERE -->
+<div class="attributeBubble" style="clear:both;float:left;margin-left:10%;margin-top:8px">
+    <h2 style="text-align:center">
+        <b>Cons:</b>
+    </h2>
+    <p style="text-align:center"> - <u>Cumulative negative attributes</u></p>
+    <ul style="text-align:left">
+        {{recipe.cumulative_neg_attributes()}}
+    </ul>
+</div>
+<div class="attributeBubble" style="float:right;margin-right:10%;margin-top:8px">
+    <h2 style="text-align:center">
+        <b>Negative Attributes</b>
+    </h2>
+    <p style="text-align:center"> - <u>A list of not-so-ethical facts about this ingredient</u></p>
+    <ul style="text-align:left">
+        {% for attr in ingredient.attributes %}
+            {% if not attr.att_pos_neg %}
+                <li>{{ attr.att_desc }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="shortSpace"></div>
+
+<!--
 <h1>Recipe: {{recipe.name}}</h1>
 <h3>Cumulative negative attributes: {{recipe.cumulative_neg_attributes()}}</h3>
 <h3>Cumulative positive attributes: {{recipe.cumulative_pos_attributes()}}</h3>
 <h1>Ingredients:</h1>
 {{ table }}
 {% endblock %}
+-->

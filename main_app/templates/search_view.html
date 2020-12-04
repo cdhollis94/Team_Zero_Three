@@ -1,20 +1,33 @@
-{% extends "bootstrap/base.html" %}       
+{% extends "base.html" %}       
 {% block title %}Search Page{% endblock %}
 {% block head %}
     {{ super() }}
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
 {% endblock %}
 {% block body %}
-<h1>Search</h1>
+
+<!-- PAGE NAME BEGINS HERE -->
+<h1 style="margin-left:5%">
+  <b>Search</b>
+</h1>
+<center><hr class="majorLine"></center>
+
+<!-- FORM BEGINS HERE -->
+<center>
 {% from "_formhelpers.html" import render_field %}
-<form method=post>
+<form class="searchForm" method=post>
   <dl>
     {{ render_field(form.select) }}
     {{ render_field(form.search) }}
   </dl>
-  <p><input type=submit value=Search>
+  <p><input type=submit value=Go>
 </form>
+
+<!-- TABLE BEGINS HERE -->
+<div class="searchTable" style="clear:both">
 {% if table %}
-<h1>Search Results:</h1>
+<h2><u>Results:</u></h2 style="margin-top:30px">
 {{ table }}
 {% endif %}
+</center>
 {% endblock %}

@@ -23,12 +23,14 @@
     </h2>
 </div>
 <hr class="minorLine" style="float:right;margin-right:13%;margin-left:0px">
-<h3 style="margin-left:42%;margin-top:10px">
-    Food Group: {{ingredient.food_group.fg_name}}
-</h3>
-<h3 style="margin-left:42%">
-    Description: blablablablablablablablablablablabla... 
-</h3>
+<div class="infoArea">
+    <h3>
+        Food Group: {{ingredient.food_group.fg_name}}
+    </h3>
+    <h3>
+        Description: blablablablablablablablablablablabla... 
+    </h3>
+</div>
 <br>
 
 
@@ -70,14 +72,12 @@
 
 
 <div class="greyBlock">
-    <center>
-    <h3 style="margin-top:10px">Possible Alternatives</h3>
-    <p> - A list of ingredients that could be used as a substitute:</p>
-    <ul style="list-style-type:none;margin-bottom:20px">
+    <h3 style="margin-top:10px"><u>Possible Alternatives</u></h3>
+    <p>Here are some ingredients that could be used as a substitute:</p>
+    <ol style="margin-bottom:20px;margin-left:0px;list-style-position:inside;text-align:center">
         {% for ings in ingredient.food_group.ingredients %}
             <li>{{ ings.ing_name }}</li>
         {% endfor %}
-    </ul>
-    </center>
+    </ol>
 </div>
 {% endblock %}
