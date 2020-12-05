@@ -2,8 +2,6 @@ body, h1, h2, h3, hr, p, li, ul, ol, form, table {
   font-family: "Lato", sans-serif;
   margin-bottom: 0px;
   margin-top: 0px;
-  margin-left: 15px;
-  margin-right: 15px;
 }
 
 
@@ -45,6 +43,11 @@ form {
 }
 table {
   font-size: 18px;
+}
+
+.bodyDiv {
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .topbar {
@@ -208,4 +211,10 @@ table {
   padding: 3px;border-radius:10px;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.loginForm {
+  width: 30%;
+  margin-top: 5%;
+  margin-bottom: 10px;
 }
