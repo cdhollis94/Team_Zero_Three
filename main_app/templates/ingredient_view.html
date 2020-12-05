@@ -7,6 +7,7 @@
 {% block body %}
 
 
+<div class="bodyDiv">
 <!-- INGREDIENT NAME BEGINS HERE -->
 <h1 style="margin-left:5%">
     <b>{{ingredient.ing_name}}</b>
@@ -17,7 +18,7 @@
 <!-- INGREDIENT INFORMATION BEGINS HERE -->
 <div>
     <p style="float: left; border: 3px solid gray;margin-left:15%;margin-bottom:10px">
-    <img src={{ ingredient.ing_pic }} width="320" height="320" alt=ingredient.ing_name title=ingredient.ing_name>
+    <img src={{ ingredient.ing_pic }} width="290" height="290" alt=ingredient.ing_name title=ingredient.ing_name>
     <h2 style="margin-left:40%">
         <b>Summary</b>
     </h2>
@@ -79,5 +80,6 @@
             <li>{{ ings.ing_name }}</li>
         {% endfor %}
     </ol>
+</div>
 </div>
 {% endblock %}

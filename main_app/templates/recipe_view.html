@@ -1,12 +1,20 @@
-{% extends "base.html" %}       
+{% extends "base.html" %}
 {% block title %}Recipe Detail - {{recipe.name}} {% endblock %}
 {% block head %}
     {{ super() }}
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}/>
 {% endblock %}
 {% block body %}
+<div class="bodyDiv">
 <h1>Recipe: {{recipe.name}}</h1>
-<h3>Cumulative negative attributes: {{recipe.cumulative_neg_attributes()}}</h3>
-<h3>Cumulative positive attributes: {{recipe.cumulative_pos_attributes()}}</h3>
+<h3 style="margin-left:8%">Cumulative negative attributes: {{recipe.cumulative_neg_attributes()}}</h3>
+<h3 style="margin-left:8%;margin-bottom:20px">Cumulative positive attributes: {{recipe.cumulative_pos_attributes()}}</h3>
+
+<hr class="majorLine">
+
 <h1>Ingredients:</h1>
-{{ table }}
+<div class="searchTable" style="margin-top:20px">
+    {{ table }}
+</div>
+</div>
 {% endblock %}

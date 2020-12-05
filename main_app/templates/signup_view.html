@@ -17,19 +17,21 @@
   {% endwith %}
   <!-- flash -->
 
-  <form class="form-signin" method="POST" action="/signup">
+  <center>
+  <form class="form-signin loginForm" method="POST" action="/signup">
     <h2 class="form-signin-heading">Create An Account</h2>
     {{ form.hidden_tag() }}
     {{ wtf.form_field(form.username) }}
+    <div><p>- Username length must be between 3 and 16 inclusive</p></div>
     {{ wtf.form_field(form.password) }}
-    <div>username length must be between 3 and 16 inclusive</div>
-    <div>password length must be between 8 and 32 inclusive</div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+    <div><p>- Password length must be between 8 and 32 inclusive</p></div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" style="width:270px">Sign Up</button>
   </form>
 
-  <form action="/login">
+  <form action="/login" style="width:30%">
     <button class="btn btn-lg btn-secondary btn-block" type="submit">Login</button>
   </form>
+  </center>
   
 </div> <!-- /container -->
 {% endblock %}
