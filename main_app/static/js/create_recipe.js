@@ -67,7 +67,12 @@ document.querySelector('.accordion').addEventListener('click', (event) => {
             recipe_table_body.appendChild(row_clone);
 
             // ingredient added
-            alert('Ingredient added to recipe');
+            let alert = document.querySelector('.alert');
+            alert.innerText = 'Ingredient Added'
+            alert.style.display = 'block'
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 2000);
         }
     }
 });
@@ -89,6 +94,15 @@ document.querySelector('#recipe_table_body').addEventListener('click', (event) =
             let recipe_head_row = document.querySelector('#recipe_head_row');
             recipe_head_row.style.display = 'none';
         }
+
+        // ingredient deleted alert
+        let alert = document.querySelector('.alert');
+        alert.innerText = 'Ingredient Removed'
+        alert.style.display = 'block'
+        setTimeout(() => {
+            alert.style.display = 'none';
+        }, 2000);
+
         console.log(added_ingredients);
     }
     else if (event.target.value === 'Alt') {
@@ -128,6 +142,7 @@ document.querySelector('#recipe_table_body').addEventListener('click', (event) =
     }
 });
 
+// Selected alternative
 document.querySelector('#right_div').addEventListener('click', (event) => {
     if (event.target.value === 'Select') {
         console.log(row_to_be_changed);
@@ -149,6 +164,13 @@ document.querySelector('#right_div').addEventListener('click', (event) => {
         children[3].innerHTML = selected_ingredient_children[3].innerHTML;
         
         clearRight();
+
+        let alert = document.querySelector('.alert');
+        alert.innerText = 'Alternative Selected'
+        alert.style.display = 'block'
+        setTimeout(() => {
+            alert.style.display = 'none';
+        }, 2000);
 
         console.log(added_ingredients);
     }
