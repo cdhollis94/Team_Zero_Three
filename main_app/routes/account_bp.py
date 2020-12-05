@@ -4,13 +4,13 @@ account_bp = Blueprint('account_bp', __name__)
 
 # [CREATE FORMS] -----------------------------------------------------------------
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired()])
-    password = PasswordField('password', validators=[InputRequired()])
-    remember = BooleanField('remember me')
+    username = StringField('Username', validators=[InputRequired()])
+    password = PasswordField('Password', validators=[InputRequired()])
+    remember = BooleanField('Remember me')
 
 class SignUpForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(), Length(min=3, max=16)])
-    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=32)])
+    username = StringField('Username', validators=[InputRequired(), Length(min=3, max=16)])
+    password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=32)])
 # --------------------------------------------------------------------------------
 
 # [DESIGNATE ROUTES] -------------------------------------------------------------
