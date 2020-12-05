@@ -7,7 +7,7 @@ class Ingredient_Food_Group(Table):
     """
     Table to show the ingredients for each food group
     """
-    rendered_image = Col("Ingredient")
+    # rendered_image = Col("Ingredient")
     ing_name = Col("Ingredient Name")
     food_group = Col("Food Group")
     num_pos_attributes = Col("Number of Positive Attributes")
